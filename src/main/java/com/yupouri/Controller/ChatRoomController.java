@@ -9,16 +9,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ChatRoomController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView showLoginForm(ModelAndView mav) {
-        mav.setViewName("login");
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView showChatRoom(ModelAndView mav) {
+        mav.setViewName("chatroom");
         return mav;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView inputName(@RequestParam("name") String name, ModelAndView mav) {
-        System.out.println("\n\n" + name + "\n\n");
-        return new ModelAndView("redirect:/login");
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ModelAndView sendText(@RequestParam("name") String name, @RequestParam("text") String text) {
+        TestLog.showString(name);
+        TestLog.showString(text);
+        return new ModelAndView("redirect:/");
     }
 
 }
